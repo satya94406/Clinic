@@ -10,7 +10,7 @@ function App() {
 
   const AppRouter= createBrowserRouter([
       {
-        path:"/",
+        path:"/Clinic",
         element:<Body/>
       }
       ,{
