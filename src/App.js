@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Body from './Components/Body';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import AppStore from './Utils/AppStore';
+import { Provider } from 'react-redux';
+import Preview from './Components/Preview';
+
 
 function App() {
+
+  const AppRouter= createBrowserRouter([
+      {
+        path:"/",
+        element:<Body/>
+      }
+      ,{
+           path:"/Preview",
+           element:<Preview/>
+        }    
+ ])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={AppStore}>
+      <div className="flex justify-center items-center mt-5 ">
+        <div>
+            <RouterProvider router={AppRouter}/>
+        </div>
+      </div>
+    </Provider>
   );
 }
 
