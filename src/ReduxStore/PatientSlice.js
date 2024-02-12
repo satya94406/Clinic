@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 
 const Submit_Slice = createSlice({
     name:"Submit",
@@ -9,7 +10,8 @@ const Submit_Slice = createSlice({
         Date:"",
         Time:"",
         Mobile_code:"",
-        Mobile_Number:""
+        Mobile_Number:"",
+        ClearData:""
     },
     reducers:{
         PatientName:(state,action)=>{
@@ -32,9 +34,18 @@ const Submit_Slice = createSlice({
     },
         Mobile_Number:(state,action)=>{
         state. Mobile_Number = action.payload
+    },
+    resetData: (state) => {
+        state.PatientName = "";
+        state.DoctorName = "";
+        state.ClinicName = "";
+        state.Date = "";
+        state.Time = "";
+        state.Mobile_code = "";
+        state.Mobile_Number = "";
     }
 }
 })
 
-export const { PatientName, DoctorName,ClinicName, Date,Time, Mobile_code,Mobile_Number} = Submit_Slice.actions;
+export const { PatientName, DoctorName,ClinicName, Date,Time, Mobile_code,Mobile_Number,resetData} = Submit_Slice.actions;
 export default Submit_Slice.reducer;

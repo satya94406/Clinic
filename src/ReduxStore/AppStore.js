@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import submitSliceReducer from './SubmitSlice'
+import submitSliceReducer from './PatientSlice'
 const AppStore = configureStore({
      reducer:{
         app:submitSliceReducer

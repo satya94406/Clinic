@@ -11,9 +11,8 @@ const Preview = () => {
            <h1 className='font-bold text-sky-900 text-center'>Patient Deatils</h1>
            <h1 className='m-1'>Patient Name -{Form_View.PatientName}</h1>
            <h1 className='m-1'>Clinic Name -{Form_View.ClinicName}</h1>
-           <h1 className='m-1'>Clinic Name -{Form_View.ClinicName}</h1>
            <h1 className='m-1'>Doctor Name -{Form_View.DoctorName}</h1>
-           <h1 className='m-1'>Date -{Form_View.Date.toLocaleDateString()}    And Time -{Form_View.Time}</h1>
+           <h1 className='m-1'>Date -{new Date(Form_View.Date).toLocaleDateString()}    And Time -{Form_View.Time}</h1>
            <h1 className='m-1'>Mobile Number -{Form_View. Mobile_Number}</h1>
         </div>        
     </div>
