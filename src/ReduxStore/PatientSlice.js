@@ -11,7 +11,6 @@ const Submit_Slice = createSlice({
         Time:"",
         Mobile_code:"",
         Mobile_Number:"",
-        ClearData:""
     },
     reducers:{
         PatientName:(state,action)=>{
