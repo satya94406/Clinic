@@ -66,7 +66,7 @@ const Body = () => {
 
     return (
         <>
-            <div className='w-1.5/3 h-[358px] md:h-[252px] rounded-3xl bg-slate-200 shadow-lg m-2 '>
+            <div className='w-1.5/3 h-[358px] md:h-[252px]  rounded-3xl bg-slate-200 shadow-lg m-auto '>
                 <form className='m-3 ' onSubmit={handleSubmit}>
                    <div>
                       <h1 className='text-center m-2 relative font-extrabold text-sky-800'>
@@ -79,7 +79,7 @@ const Body = () => {
                             <div>
                                 <span className='font-semibold'>Clinic</span>
                             </div>
-                            <select className='w-48 rounded-md' value={selected} onChange={handleOption}>
+                            <select className='w-48 rounded-md border border-black' value={selected} onChange={handleOption}>
                                 {hospital_names.map((name, index) => <option key={index} value={name}>{name}</option>)}
                             </select>
                         </div>
@@ -87,14 +87,14 @@ const Body = () => {
                             <div>
                                 <span className='font-semibold'>Doctor</span>
                             </div>
-                            <select className='w-48 rounded-md' value={Doctor_selected} onChange={doctor_handleOption}>
+                            <select className='w-48 rounded-md border border-black' value={Doctor_selected} onChange={doctor_handleOption}>
                                 {doctor_Names.map((name, index) => <option key={index} value={name}>{name}</option>)}
                             </select>
                         </div>
                     </div>
                     <div className='m-1'>
                         <span className='font-semibold'>Patient Name</span>
-                        <input className='ml-1 mb-2 w-[286px] pl-1 rounded-md' value={Name} onChange={handleChange_patientName} required />
+                        <input className='ml-1 mb-2 w-full md:w-[286px] pl-1 rounded-md border border-black ' value={Name} onChange={handleChange_patientName}  required />
                     </div>
                     <div className='null md:flex'>
                         <div className='m-1'>
@@ -103,23 +103,24 @@ const Body = () => {
                                 onChange={handleDateChange}
                                 dateFormat="yyyy-MM-dd"
                                 placeholderText="Select Date"
-                                className="w-48 h-[20px] rounded-md pl-1"
+                                className="w-48 h-[20px] rounded-md pl-1 border border-black"
+                                
                             />
                         </div>
                         <div>
-                            <select value={TimeChange} onChange={handle_timeChange} className='m-1 rounded-md'>
+                            <select value={TimeChange} onChange={handle_timeChange} className='m-1 rounded-md border border-black'>
                                 {times.map((time, index) => <option key={index} value={time}>{time}</option>)}
                             </select>
                         </div>
                     </div>
                     <div className='m-1'>
-                        <select value={Mobile_Code} onChange={Mobile_Code_change} className='rounded-md py-0.5'>
+                        <select value={Mobile_Code} onChange={Mobile_Code_change} className='rounded-md py-0.5 border border-black'>
                             {mobile_code.map((code, index) => <option key={index} value={code}>+{code}</option>)}
                         </select>
-                        <input className='ml-3 rounded-md pl-1' placeholder='Mobile Number' value={Mobile_number} onChange={handleChange_mobileNumber} />
+                        <input className='ml-3 rounded-md pl-1 border border-black ' placeholder='Mobile Number' value={Mobile_number} onChange={handleChange_mobileNumber} />
                         <div className='m-1 mt-5 flex justify-around'>
-                            <button type='submit' className='bg-red-300 p-1 rounded-md' >Submit</button>
-                            <Link className='bg-red-300 p-1 rounded-md' to="/Preview">Preview</Link>
+                            <button type='submit' className='bg-red-300 p-1 rounded-md border border-red-900' >Submit</button>
+                            <Link className='bg-red-300 p-1 rounded-md border border-red-900' to="/Preview">Preview</Link>
                         </div>
                     </div>
                 </form>
