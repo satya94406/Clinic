@@ -46,8 +46,12 @@ const Body = () => {
   };
 
     const handleChange_mobileNumber = (e) => {
-        const input = e.target.value.replace(/\D/g, '');
-        dispatch(Mobile_Number(input));
+        let input = e.target.value.replace(/\D/g, ''); // Remove non-digit characters
+        if (input.length > 10) {
+            // Truncate the input to 10 digits
+            input = input.slice(0, 10);
+        }       
+         dispatch(Mobile_Number(input));
     };
 
     const handleSubmit = (e) => {
