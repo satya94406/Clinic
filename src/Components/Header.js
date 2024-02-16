@@ -1,8 +1,12 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { resetData } from '../ReduxStore/PatientSlice';
 
 const Header = () => {
+  const dispatch =useDispatch();
   const handleBackButtonClick = () => {
     window.history.back(); // Navigate back using window.history object
+    dispatch(resetData());
   };
 
   return (

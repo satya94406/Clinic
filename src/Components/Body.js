@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { hospital_names, times, mobile_code, doctor_Names } from '../Utility/constants';
-import { Link } from 'react-router-dom';
+import { Link, unstable_HistoryRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ClinicName, Date, DoctorName, Mobile_Number, Mobile_code, PatientName, Time, resetData } from '../ReduxStore/PatientSlice';
+import SubmitPage from './SubmitPage';
 
 const Body = () => {
     const dispatch = useDispatch();
@@ -65,66 +66,85 @@ const Body = () => {
             alert("Please fill Mobile Number.");
             return;
         }
-        dispatch(resetData());
+        
     };
 
     return (
         <>
-            <div className='w-1.5/3 h-[358px] md:h-[252px]  rounded-3xl bg-slate-200 shadow-lg m-auto '>
-                <form className='m-3 ' onSubmit={handleSubmit}>
+            <div className='h-[355px] sm:max-w-[628px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] rounded-3xl bg-slate-100 shadow-xl m-auto border-2 border-gray-200'>
+                <form className='p-1 m-2 mt-0.5  ' onSubmit={handleSubmit}>
+                  <div>
                    <div>
-                      <h1 className='text-center m-2 relative font-extrabold text-sky-800'>
-                         New Appointment
-                         <div className="h-0.5  bg-slate-400 w-full absolute bottom-0"></div>
-                      </h1>
+                      <div className='text-center  h-6 w-auto relative font-sans text-[18px] text-sky-800 mb-3 '>
+                         <h1 className='  border-b-2  border-gray-300'>New Appointment</h1> 
+                      </div>
                    </div>
-                    <div className='null md:flex'>
-                        <div className='m-1'>
+                    <div className='flex'>
+                        <div className='m-1 '>
                             <div>
-                                <span className='font-semibold'>Clinic</span>
+                                <span className='font-sans text-[14px]'>Clinic</span>
                             </div>
-                            <select className='w-48 rounded-md border border-black' value={selected} onChange={handleOption}>
+                            <select className='w-full sm:w-[270px] md:w-[350px] lg:w-[450px] xl:w-[550px] rounded-md border-2 border-gray-300' value={selected} onChange={handleOption}>
                                 {hospital_names.map((name, index) => <option key={index} value={name}>{name}</option>)}
                             </select>
                         </div>
-                        <div className='m-1'>
+                        <div className='m-1 ml-11'>
                             <div>
-                                <span className='font-semibold'>Doctor</span>
+                                <span className='font-sans text-[14px]'>Doctor</span>
                             </div>
-                            <select className='w-48 rounded-md border border-black' value={Doctor_selected} onChange={doctor_handleOption}>
+                            <select className='w-full sm:w-[270px] md:w-[350px] lg:w-[450px] xl:w-[550px] rounded-md border-2 border-gray-300' value={Doctor_selected} onChange={doctor_handleOption}>
                                 {doctor_Names.map((name, index) => <option key={index} value={name}>{name}</option>)}
                             </select>
                         </div>
                     </div>
                     <div className='m-1'>
-                        <span className='font-semibold'>Patient Name</span>
-                        <input className='ml-1 mb-2 w-full md:w-[286px] pl-1 rounded-md border border-black ' value={Name} onChange={handleChange_patientName}  required />
+                        <span className='font-sans text-[14px]'>Patient Name</span>
+                        <input className='mb-2 w-full h-[24px] p-1 rounded-md border-2 border-gray-300' value={Name} onChange={handleChange_patientName} required />
                     </div>
-                    <div className='null md:flex'>
-                        <div className='m-1'>
+                    <div className='flex'>
+                     <div className='m-1 '>
+                        <div className='font-sans text-[14px]'>Date</div>
                             <ReactDatePicker
                                 selected={selectedDate}
                                 onChange={handleDateChange}
                                 dateFormat="yyyy-MM-dd"
                                 placeholderText="Select Date"
-                                className="w-48 h-[20px] rounded-md pl-1 border border-black"
-                                
+                                className='w-full sm:w-[270px] md:w-[350px] lg:w-[450px] xl:w-[550px] rounded-md border-2 border-gray-300'
                             />
                         </div>
-                        <div>
-                            <select value={TimeChange} onChange={handle_timeChange} className='m-1 rounded-md border border-black'>
+                        <div className='m-1 ml-11'>
+                           <div className='font-sans text-[14px]'>Start Time</div>
+                            <select value={TimeChange} onChange={handle_timeChange} className='w-full sm:w-[270px] md:w-[350px] lg:w-[450px] xl:w-[550px] rounded-md border-2 border-gray-300'>
                                 {times.map((time, index) => <option key={index} value={time}>{time}</option>)}
                             </select>
                         </div>
                     </div>
-                    <div className='m-1'>
-                        <select value={Mobile_Code} onChange={Mobile_Code_change} className='rounded-md py-0.5 border border-black'>
+                    
+                    <div className='m-1 mt-3 flex'>
+                      <div>
+                        <div  className='font-sans text-[14px]'>
+                            Mobile Number
+                        </div>
+                        <div className='flex'>
+                        <select value={Mobile_Code} onChange={Mobile_Code_change} className='rounded-md h-[24px]  py-0.5 border-2  border-gray-300'>
                             {mobile_code.map((code, index) => <option key={index} value={code}>+{code}</option>)}
                         </select>
-                        <input className='ml-3 rounded-md pl-1 border border-black ' placeholder='Mobile Number' value={Mobile_number} onChange={handleChange_mobileNumber} />
-                        <div className='m-1 mt-5 flex justify-around'>
-                            <button type='submit' className='bg-red-300 p-1 rounded-md border border-red-900' >Submit</button>
-                            <Link className='bg-red-300 p-1 rounded-md border border-red-900' to="/Preview">Preview</Link>
+                        <input className='w-full sm:w-[212px] md:w-[292px] lg:w-[392px] xl:w-[492px] rounded-md border-2 border-gray-300' placeholder='Mobile Number' value={Mobile_number} onChange={handleChange_mobileNumber} /> 
+                        </div>
+                     </div>
+                       <div className='ml-12'>
+                        <div  className='font-sans text-[14px]'>
+                            Email Id
+                        </div>
+                    
+                        <input className='w-full sm:w-[270px] md:w-[350px] lg:w-[450px] xl:w-[550px] rounded-md border-2 border-gray-300' placeholder='Email Id' />
+                       </div>
+                    </div>
+                        <div className='m-1 mt-5 flex justify-center'>
+                               <Link to='/submit' className="inline-block bg-red-300 p-1 rounded-md border border-red-900">
+                                  Submit
+                               <button type='submit' className="hidden" ></button>
+                               </Link>
                         </div>
                     </div>
                 </form>
