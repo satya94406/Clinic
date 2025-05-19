@@ -10,20 +10,20 @@ import SubmitPage from './Components/SubmitPage';
 
 function App() {
 
-  const AppRouter= createBrowserRouter([
-    ,{
-        path:"/Clinic",
-        element:<Body/>,
-      }, 
-       {
-        path:"/Submit",
-        element:<SubmitPage/>
-       }, 
-       {
-        path:"*",
-        element:<ErrorPage/>
-       }
- ])
+  const AppRouter = createBrowserRouter([
+    {
+      path: "/",       
+      element: <Body />
+    },
+    {
+      path: "/submit", 
+      element: <SubmitPage />
+    },
+    {
+      path: "*",
+      element: <ErrorPage />
+    }
+  ]);
 
   return (
     <Provider store={AppStore}>
